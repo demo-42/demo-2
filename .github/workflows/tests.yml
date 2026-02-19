@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - "9.4.1" # renovate: datasource=docker depName=splunk/splunk
+          - "9.4.7" # renovate: datasource=docker depName=splunk/splunk
           - "9.3.3" # renovate: datasource=docker depName=splunk/splunk
     services:
       splunk:
