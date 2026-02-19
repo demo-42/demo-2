@@ -1,1 +1,4 @@
 * @edro15
+
+# Allow Renovate Bot to merge deps
+/.github/workflows/tests.yml @demo42-renovate-app @demo42-renovate-app[bot]
