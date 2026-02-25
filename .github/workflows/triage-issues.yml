@@ -16,7 +16,7 @@ jobs:
     outputs:
       issue_open: ${{ steps.check_issue.outputs.issue_open }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check if Issue exists and is open
         id: check_issue
         env:
