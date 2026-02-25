@@ -2,6 +2,10 @@ name: Triage Issues
 
 on:
   workflow_dispatch:
+    inputs:
+      issue_number:
+        required: true
+        type: number
 
 jobs:
   check-issue:
@@ -9,24 +13,25 @@ jobs:
     outputs:
       issue_open: ${{ steps.check_issue.outputs.issue_open }}
     steps:
-      - name: Check if Issue No. 1 exists and is open
+      - name: Check if Issue exists and is open
         id: check_issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NO: ${{ inputs.issue_number }}
         run: |
-          # Fetch issue #1 and check its state
-          issue_state=$(gh issue view 1 --json state --jq '.state' 2>/dev/null || echo "NOT_FOUND")
+          # Fetch issue and check its state
+          issue_state=$(gh issue view $ISSUE_NO --json state --jq '.state' 2>/dev/null || echo "NOT_FOUND")
 
           if [ "$issue_state" = "OPEN" ]; then
-            echo "Issue #1 exists and is open"
+            echo "Issue #$ISSUE_NO exists and is open"
             echo "issue_exists=true" >> $GITHUB_OUTPUT
             echo "issue_open=true" >> $GITHUB_OUTPUT
           elif [ "$issue_state" = "CLOSED" ]; then
-            echo "Issue #1 exists but is closed"
+            echo "Issue #$ISSUE_NO exists but is closed"
             echo "issue_exists=true" >> $GITHUB_OUTPUT
             echo "issue_open=false" >> $GITHUB_OUTPUT
           else
-            echo "Issue #1 does not exist"
+            echo "Issue #$ISSUE_NO does not exist"
             exit 1
           fi
 
