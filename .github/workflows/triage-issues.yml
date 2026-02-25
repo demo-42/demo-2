@@ -8,7 +8,7 @@ on:
         type: number
 
 permissions:
-  issues: read
+  issues: write
 
 jobs:
   check-issue:
