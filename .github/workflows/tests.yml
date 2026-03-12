@@ -8,4 +8,4 @@ concurrency:
 
 jobs:
   call-workflow:
-    uses: demo-42/.github/.github/workflows/reusable-tests.yml@main
+    uses: demo-42/.github/.github/workflows/reusable-tests.yml@1
