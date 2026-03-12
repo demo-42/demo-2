@@ -42,6 +42,6 @@ jobs:
   call-workflow:
     needs: check-issue
     if: ${{ needs.check-issue.outputs.issue_open == 'true' }}
-    uses: demo-42/.github/.github/workflows/reusable-triage-issues.yml@1
+    uses: demo-42/.github/.github/workflows/reusable-triage-issues.yml@2
     with:
       issue_number: ${{ fromJSON(inputs.issue_number) }}
